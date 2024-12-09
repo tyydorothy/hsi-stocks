@@ -1,0 +1,118 @@
+body {
+  padding-top: 100px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family:'Courier New', Courier, monospace;
+}
+
+h1{
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+p{
+  padding: 10px 10px 50px 10px
+}
+
+.container {
+  text-align: left;
+  display: flex;
+  flex-direction: row; /* child item arrange from left to right */
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column; /* child items arrange from top to bottom */
+  margin-right: 100px; /* Add margin for spacing */
+  border-right: 1px solid lightgrey;
+  text-align: right;
+}
+
+.tab {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.tab:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.content {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td{
+  padding: 10px 30px 10px 30px;
+}
+
+.table th {
+  border-bottom: #565656;
+}
+
+.table tr:hover{
+  background-color: rgb(255, 151, 54);
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.symbol_col{
+  text-align: left;
+  font-size: large;
+}
+
+.price_col{
+  font-size: large;
+  text-align: right;
+}
+
+.price_col::before {
+  content: " $";
+  float: left;
+}
+
+.price_change_col{
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  
+}
+
+.up {
+  color: rgba(66, 150, 66, 0.837);
+}
+
+.down {
+  color: rgb(209, 89, 89);
+}
+
+.neutral {
+  color: gray;
+}
+
+.price_pctchange, .price_abschange{
+  display: flex;
+  flex-direction: row;
+}
+
+.markettime_col{
+  text-align: right;
+  font-size: small;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/css/homepage-style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/homepage.js"></script>
+
+</head>
+<body>
+  <h1>Hang Seng Index Stock</h1>
+  <p>This website selected 32 stocks from finance, technology and properties industry, which composes around 60% of HSI.</p>
+  <div class = "container">
+
+    <div class = "tabs">
+      <div class = "tab" onclick = "getLatestData('')">Overview</div>
+      <div class = "tab" onclick = "getLatestData('FIN')">Finance</div>
+      <div class = "tab" onclick = "getLatestData('TECH')">Technology</div>
+      <div class = "tab" onclick = "getLatestData('PROP')">Properties</div>
+    </div>
+
+    <div  class = "content">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>SYMBOL</th>
+            <th>PRICE</th>
+            <th name = "price_change"></th>
+            <th>LAST MARKET TIME</th>
+          </tr>
+        </thead>
+        <tbody id = "stock-content">
+          <tr th:attr = "data-stock-id=${stock.symbol}" th:each="stock:${StockDataDto}">
+            <td class = "symbol_col" th:text="${stock.symbol}"></td>
+            <td class = "price_col" th:text="${#numbers.formatDecimal(stock.regularMarketPrice, 1,'COMMA', 2, 'POINT')}"></td>
+            <td class = "price_change_col" th:class="${(stock.regularMarketPricePercentageChange > 0 ? 'up' : (stock.regularMarketPricePercentageChange < 0 ? 'down' : 'neutral'))}">
+              <span class = "price_pctchange">
+                <span th:text="${stock.regularMarketPricePercentageChange > 0 ? '▲' : (stock.regularMarketPricePercentageChange < 0 ? '▼' : '-')}"></span>
+                <span th:text="${#numbers.formatDecimal((stock.regularMarketPricePercentageChange < 0 ? -stock.regularMarketPricePercentageChange : stock.regularMarketPricePercentageChange),1,'COMMA', 2, 'POINT')}"></span>
+                <span>%</span>
+              </span>
+              <span class = "price_abschange">
+                <span>(</span>
+                <span th:text="${stock.regularMarketPriceAbsoluteChange > 0 ? '+' : ''}"></span>
+                <span th:text="${#numbers.formatDecimal(stock.regularMarketPriceAbsoluteChange,1,'COMMA', 2, 'POINT')}"></span>
+                <span>)</span>
+              </span>
+            </td>
+            <td class = "markettime_col" th:text="${#temporals.format(stock.regularMarketTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+
+             <!-- ${#dates.format(...)}, ${#numbers.formatDecimal thymeleaf function -->
+             <!-- ${} is unique syntax for thymeleaf-->
+             <!-- # specifies library--> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>

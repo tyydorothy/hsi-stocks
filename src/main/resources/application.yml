@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+api: 
+  url: 
+    domain: 
+    endpoint: 
+
+spring:
+  jackson:
+    time-zone: "GMT +8"
+      
+  datasource:
+    driverClassName: "org.postgresql.Driver"
+    url: "jdbc:postgresql://localhost:5432/bc-yahoo-finance"
+    username: "postgres"
+    password: "admin1234"
+    
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  # thymeleaf:
+  #   prefix: classpath:/resources/
+  #   suffix: .html
+  #   mode: html
+  #   encoding: UTF-8
