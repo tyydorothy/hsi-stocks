@@ -8,20 +8,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface StockOperation {
 
-  // @GetMapping("/stock-list")
-  // List<String> getStockList() throws JsonProcessingException;
-
-  // @GetMapping("/stock/{symbol}")
-  // Boolean findStock(@PathVariable String symbol) throws  JsonProcessingException;
-
   @GetMapping("/latest-data/")
   List<StockDataDto> getLatestStockData() throws JsonProcessingException;
 
   @GetMapping("/latest-data/{group}")
   List<StockDataDto> getLatestStockData(@PathVariable String group) throws JsonProcessingException;
-
-  // @GetMapping("/last-update-date")
-  // String getLastMarketDate(@RequestParam String symbo);
 
 
 

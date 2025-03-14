@@ -1,10 +1,8 @@
 package com.bootcamp.bc_yahoo_finance.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bootcamp.bc_yahoo_finance.dto.StockDataDto;
@@ -71,13 +69,11 @@ public class StockServiceImpl implements StockService{
       );
     }
   
-    stockDataRepository.saveAll(stockDataEntities);
-
-    String stockDataJson = objectMapper.writeValueAsString(stockDataEntities.stream().map(e->dtoMapper.map(e)).toArray());
+    String stockDataJson = objectMapper.writeValueAsString(stockDataDtos.toArray());
 
     redisOperation.set("LATEST", stockDataJson);
     
-    return Arrays.asList(objectMapper.readValue(redisOperation.get("LATEST"), StockDataDto[].class)); 
+    return Arrays.asList(objectMapper.readValue(redisOperation.get("LATEST"), StockDataDto[].class));
 
   }
 

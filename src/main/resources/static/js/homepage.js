@@ -1,5 +1,5 @@
 function getLatestData(tab) {
-  let endpoint = '/frontend-test';
+  let endpoint = '/hsi-stocks';
   
   if (tab === 'FIN') {
     endpoint += '/finance';
@@ -102,15 +102,13 @@ $(document).ready(function () {
       success: function (data) {
         data.forEach(function (stock, index) {
           // Find the corresponding row using index or another unique identifier
-          var row = $(`data-stock-id=${stock.symbol}`);
+          var row = $(`[data-stock-id=${stock.symbol}]`);
 
           if (row.length) {
-            // Update last updated timestamp
             row
               .find(".markettime_col")
               .text(formatDateTime(stock.regularMarketTime)); 
 
-            // Update current price
             row
               .find(".price_col")
               .text("$" + stock.regularMarketPrice.toFixed(2));

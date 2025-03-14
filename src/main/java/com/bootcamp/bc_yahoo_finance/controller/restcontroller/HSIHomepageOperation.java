@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
-@RequestMapping("/hsi-stock")
+@RequestMapping("/hsi-stocks")
 public interface HSIHomepageOperation {
   
 
